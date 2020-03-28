@@ -1,7 +1,7 @@
 #dictionary backend.
 
 #to connect it to front end.
-from Dictionary import *
+# from Dictionary import *
 #to access dictionary data file.
 import json
 #to check the similarity of a word in case of a wrong word.
@@ -13,20 +13,22 @@ from difflib import get_close_matches
 data = json.load(open("data.json","r"))
 
 #main funtion
-def dict(word):
+def dict():
+    print('Enter a word: ')
+    words = input()
 
     #taking input from the user.
-    words = word
+    # words = word
     wordCheck(words.lower())
 
 #function to check the a word in dictionary.
 def wordCheck(words):
     simWord = get_close_matches(words,data)
     if words in data:
-        print("%s - " %words)
+        # print("%s - " %words)
         for item in data[words]:
             print(item)
-            user_output(item)
+            # user_output(item)
     elif simWord:
         flag = input("Do you mean %s instead?(y/n)" %simWord[0])
         flag.lower()
@@ -38,5 +40,8 @@ def wordCheck(words):
     else:
 
         print("No such word exists!")
+
+if __name__ == "__main__":
+    dict()
 
 # TODO: edit the program for GUI.
